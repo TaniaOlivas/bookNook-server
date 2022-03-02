@@ -53,6 +53,34 @@ router.get('/:id', validateSession, async (req, res) => {
   }
 });
 
+router.get('/genre/:genre', validateSession, async (req, res) => {
+  const { genre } = req.params;
+  try {
+    const genreResults = await models.ReviewsModel.findAll({
+      where: { genre: genre },
+    });
+    res.status(200).json(genreResults);
+  } catch (err) {
+    res.status(500).json({
+      error: err,
+    });
+  }
+});
+
+router.get('/title/:title', validateSession, async (req, res) => {
+  const { title } = req.params;
+  try {
+    const results = await models.ReviewsModel.findAll({
+      where: { title: title },
+    });
+    res.status(200).json(results);
+  } catch (err) {
+    res.status(500).json({
+      error: err,
+    });
+  }
+});
+
 router.put('/:id', validateSession, async (req, res) => {
   const { title, genre, pageLength, picture, content, rating } =
     req.body.review;
