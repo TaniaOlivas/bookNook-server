@@ -3,8 +3,7 @@ const { models } = require('../models');
 const { validateSession } = require('../middleware');
 
 router.post('/create', validateSession, async (req, res) => {
-  const { title, genre, pageLength, picture, content, rating } =
-    req.body.review;
+  const { title, genre, pageLength, picture, content, rating } = req.body;
 
   try {
     await models.ReviewsModel.create({
@@ -82,8 +81,7 @@ router.get('/title/:title', validateSession, async (req, res) => {
 });
 
 router.put('/:id', validateSession, async (req, res) => {
-  const { title, genre, pageLength, picture, content, rating } =
-    req.body.review;
+  const { title, genre, pageLength, picture, content, rating } = req.body;
 
   try {
     await models.ReviewsModel.update(

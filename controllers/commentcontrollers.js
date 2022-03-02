@@ -3,7 +3,7 @@ const { validateSession } = require('../middleware');
 const { models } = require('../models');
 
 router.post('/comment', validateSession, async (req, res) => {
-  const { content, bookReviewId } = req.body.comment;
+  const { content, bookReviewId } = req.body;
   const userId = req.user.id;
 
   try {
@@ -39,7 +39,7 @@ router.get('/:bookReviewId', async (req, res) => {
 });
 
 router.put('/:id', validateSession, async (req, res) => {
-  const { content } = req.body.comment;
+  const { content } = req.body;
 
   try {
     await models.CommentsModel.update(

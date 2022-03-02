@@ -3,7 +3,7 @@ const { models } = require('../models');
 const { validateSession } = require('../middleware');
 
 router.post('/publish', validateSession, async (req, res) => {
-  const { title, genre, pageLength, picture } = req.body.post;
+  const { title, genre, pageLength, picture } = req.body;
 
   if (req.user.userType !== 'Author') {
     res.send('Not Authorized');
@@ -73,7 +73,7 @@ router.get('/genre/:genre', validateSession, async (req, res) => {
 });
 
 router.put('/:id', validateSession, async (req, res) => {
-  const { title, genre, pageLength, picture } = req.body.post;
+  const { title, genre, pageLength, picture } = req.body;
   if (req.user.userType !== 'Author') {
     res.send('Not Authorized');
     return;
