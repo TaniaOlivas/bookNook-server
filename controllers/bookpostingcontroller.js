@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { models } = require('../models');
 const { validateSession } = require('../middleware');
+const { Op } = require('@sequelize/core');
+// const Sequelize = require('sequelize');
 
 router.post('/publish', validateSession, async (req, res) => {
   const { title, genre, pageLength, picture } = req.body;
@@ -48,12 +50,12 @@ router.get('/title/:title', validateSession, async (req, res) => {
   const { title } = req.params;
   try {
     const results = await models.PostingsModel.findAll({
-      where: { title: title },
+      where: { title: { [Op.substring]: title } },
     });
     res.status(200).json(results);
   } catch (err) {
     res.status(500).json({
-      error: err,
+      error: err.message,
     });
   }
 });
@@ -62,12 +64,12 @@ router.get('/genre/:genre', validateSession, async (req, res) => {
   const { genre } = req.params;
   try {
     const genreResults = await models.PostingsModel.findAll({
-      where: { genre: genre },
+      where: { genre: { [Op.substring]: genre } },
     });
     res.status(200).json(genreResults);
   } catch (err) {
     res.status(500).json({
-      error: err,
+      error: err.message,
     });
   }
 });
