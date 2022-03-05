@@ -2,7 +2,6 @@ const router = require('express').Router();
 const { models } = require('../models');
 const { validateSession } = require('../middleware');
 const { Op } = require('@sequelize/core');
-// const Sequelize = require('sequelize');
 
 router.post('/publish', validateSession, async (req, res) => {
   const { title, genre, pageLength, picture } = req.body;
