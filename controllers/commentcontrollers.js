@@ -73,7 +73,6 @@ router.delete('/:id', validateSession, async (req, res) => {
     const deletedComment = await models.CommentsModel.destroy(query);
 
     if (deletedComment) {
-      req.user.id = deletedComment;
       res.status(200).json({
         message: 'Comment Removed',
       });

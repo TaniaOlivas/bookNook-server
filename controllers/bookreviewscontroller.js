@@ -38,7 +38,7 @@ router.get('/all', async (req, res) => {
   }
 });
 
-router.get('/:id', validateSession, async (req, res) => {
+router.get('/mine', validateSession, async (req, res) => {
   const { id } = req.user;
   try {
     const bookReviews = await models.ReviewsModel.findAll({

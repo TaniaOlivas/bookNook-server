@@ -45,6 +45,20 @@ router.get('/all/:userId', async (req, res) => {
   }
 });
 
+router.get('/mine', validateSession, async (req, res) => {
+  const { id } = req.user;
+  try {
+    const bookPosts = await models.PostingsModel.findAll({
+      where: {
+        userId: id,
+      },
+    });
+    res.status(200).json(bookPosts);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+});
+
 router.get('/title/:title', validateSession, async (req, res) => {
   const { title } = req.params;
   try {
