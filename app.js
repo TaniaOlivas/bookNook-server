@@ -14,6 +14,7 @@ app.use('/user', controllers.userscontroller);
 app.use('/post', controllers.bookpostingscontroller);
 app.use('/review', controllers.bookreviewscontroller);
 app.use('/comment', controllers.commentscontroller);
+app.use('/book', controllers.booklistcontroller);
 
 dbConnection
   .authenticate()

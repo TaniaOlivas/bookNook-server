@@ -4,7 +4,7 @@ const { validateSession } = require('../middleware');
 const { Op } = require('@sequelize/core');
 
 router.post('/publish', validateSession, async (req, res) => {
-  const { title, genre, pageLength, picture } = req.body;
+  const { title, author, genre, pageLength, picture } = req.body;
 
   if (req.user.userType !== 'Author') {
     res.send('Not Authorized');
@@ -13,6 +13,7 @@ router.post('/publish', validateSession, async (req, res) => {
     try {
       await models.PostingsModel.create({
         title: title,
+        author: author,
         genre: genre,
         pageLength: pageLength,
         picture: picture,
@@ -88,14 +89,14 @@ router.get('/genre/:genre', validateSession, async (req, res) => {
 });
 
 router.put('/:id', validateSession, async (req, res) => {
-  const { title, genre, pageLength, picture } = req.body;
+  const { title, author, genre, pageLength, picture } = req.body;
   if (req.user.userType !== 'Author') {
     res.send('Not Authorized');
     return;
   } else {
     try {
       await models.PostingsModel.update(
-        { title, genre, pageLength, picture },
+        { title, author, genre, pageLength, picture },
         { where: { id: req.params.id }, returning: true }
       ).then((updateResult) => {
         res.status(200).json({

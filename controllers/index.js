@@ -3,4 +3,5 @@ module.exports = {
   commentscontroller: require('./commentcontrollers'),
   bookpostingscontroller: require('./bookpostingcontroller'),
   bookreviewscontroller: require('./bookreviewscontroller'),
+  booklistcontroller: require('./booklistcontroller'),
 };

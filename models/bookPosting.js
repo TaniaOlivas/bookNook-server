@@ -6,6 +6,10 @@ const BookPostings = db.define('bookPosting', {
     type: DataTypes.STRING(),
     allowNull: false,
   },
+  author: {
+    type: DataTypes.STRING(),
+    allowNull: false,
+  },
   genre: {
     type: DataTypes.STRING(),
     allowNull: false,

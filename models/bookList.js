@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const db = require('../db');
 
-const BookReviews = db.define('bookReview', {
+const BookList = db.define('bookList', {
   title: {
     type: DataTypes.STRING(),
     allowNull: false,
@@ -22,14 +22,6 @@ const BookReviews = db.define('bookReview', {
     type: DataTypes.STRING(1000),
     allowNull: true,
   },
-  content: {
-    type: DataTypes.STRING(1000),
-    allowNull: false,
-  },
-  rating: {
-    type: DataTypes.STRING(),
-    allowNull: false,
-  },
 });
 
-module.exports = BookReviews;
+module.exports = BookList;
